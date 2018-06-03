@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Place your order here</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+            {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.orderName.label }}<br>
+            {{ form.orderName(size=32) }}
+            {% for error in form.orderName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.quantity.label }} <br>
+            {{ form.quantity }}</p>
+            {% for error in form.quantity.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        <p>
+            {{ form.size.label }} <br>
+            {{ form.size }}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

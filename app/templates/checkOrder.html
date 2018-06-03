@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <h1>
+        Your Orders :
+    </h1>
+    <table>
+        <tr>
+            <th>Order</th>
+            <th>Quantity</th>
+            <th>Size</th>
+            <th>Order By</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.orderName }}</td>
+                <td>{{ order.quantity }} </td>
+                <td>{{ order.size }}</td>
+                <td>{{ order.username }}</td>
+            </tr>
+
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</div>
+
+{% endblock %}

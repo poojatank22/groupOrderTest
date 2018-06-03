@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div>
+    <h1>
+        <a href="{{ sharing_link }}">{{ sharing_link }}</a>
+    </h1>
+</div>
+<form method="post" action="">
+    {{ form.hidden_tag() }}
+        <p>
+            {{ form.users_email.label }}<br>
+            {{ form.users_email }}
+            {% for error in form.users_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+    <p>
+        Enter Emails:
+                {% for n in range(n_friends) %}
+                    {{ form.recipients_emails[n]() }}
+                    {% for error in form.recipients_emails.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                {% endfor %}
+        </p>
+        <p>
+            {{ form.send_mail() }}
+        </p>
+</form>
+{% endblock %}
