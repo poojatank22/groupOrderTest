@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, RadioField, SubmitField, FieldList, FormField
-from wtforms.validators import DataRequired, InputRequired, number_range, Email
+from wtforms.validators import DataRequired, InputRequired, number_range, Email, Optional
 
 
 class GroupOrderForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    n_friends = IntegerField('Number of Friends', validators=[DataRequired(), number_range(min=1)])
+    n_friends = IntegerField('Number of Friends',validators=[Optional()])
     placeOrder = SubmitField('Group Order')
     checkOrder = SubmitField('Check My Orders')
 

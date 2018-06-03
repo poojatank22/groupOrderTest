@@ -1,1 +1,20 @@
 Generic single-database configuration.
+
+(venv) $ pip install flask
+(venv) $ export FLASK_APP=microblog.py //if using windows then use "set" instead of "export" in command
+(venv) $ flask run // to run app
+(venv) $ pip install flask-wtf // for forms
+(venv) $ pip install flask-sqlalchemy // for database
+(venv) $ pip install flask-migrate
+(venv) $ flask db init
+(venv) $ flask db migrate -m "some message optional"
+(venv) $ flask db upgrade
+// for mail
+(venv) $ pip install flask-mail
+(venv) $ pip install pyjwt
+
+(venv) $ export MAIL_SERVER=smtp.googlemail.com
+(venv) $ export MAIL_PORT=587
+(venv) $ export MAIL_USE_TLS=1
+(venv) $ export MAIL_USERNAME=<your-gmail-username>
+(venv) $ export MAIL_PASSWORD=<your-gmail-password>
