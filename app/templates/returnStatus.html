@@ -1,0 +1,41 @@
+
+<body>
+<p>
+    we got an order for your order id : <b>{{ order["groupId"] }}</b>
+
+</p>
+<p>
+    Order Status:
+    <table>
+    <tr>
+        <th>
+            From:
+        </th>
+        <td>{{ order["username"] }}</td>
+    </tr>
+    <tr>
+        <th>
+            Order:
+        </th>
+        <td>{{ order["orderName"] }}</td>
+    </tr>
+    <tr>
+        <th>
+            Quantity:
+        </th>
+        <td>{{ order["quantity"] }}</td>
+    </tr>
+    <tr>
+        <th>
+            Size:
+        </th>
+        <td>{% if order["size"]=="R" %}
+                Regular
+            {% else %}
+                Large
+            {% endif %}
+        </td>
+    </tr>
+    </table>
+</p>
+</body>

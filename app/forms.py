@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, InputRequired, number_range, Email,
 
 
 class GroupOrderForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Enter your Email', validators=[DataRequired(), Email()])
     n_friends = IntegerField('Number of Friends')
     placeOrder = SubmitField('Group Order')
     checkOrder = SubmitField('Check My Orders')

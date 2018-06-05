@@ -6,20 +6,26 @@
     <h1>
         Your Orders :
     </h1>
-    <table>
+    <table border="1">
         <tr>
             <th>Order</th>
             <th>Quantity</th>
             <th>Size</th>
             <th>Order By</th>
         </tr>
-        {% for order in orders %}
+        {% for d,order in orders.items() %}
             <tr>
-                <td>{{ order.orderName }}</td>
-                <td>{{ order.quantity }} </td>
-                <td>{{ order.size }}</td>
-                <td>{{ order.username }}</td>
+                <th colspan="4"><small>{{ d }}</small></th>
             </tr>
+
+            {% for o in order %}
+            <tr>
+                <td>{{ o.orderName }}</td>
+                <td>{{ o.quantity }} </td>
+                <td>{{ o.size }}</td>
+                <td>{{ o.username }}</td>
+            </tr>
+            {% endfor %}
 
         {% endfor %}
     </table>

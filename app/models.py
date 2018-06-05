@@ -3,7 +3,7 @@ from app import db
 
 class Grouporder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True)
+    username = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     orders = db.relationship('Orders', backref=db.backref('order', uselist=True, lazy='dynamic'))
 
