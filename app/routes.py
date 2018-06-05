@@ -44,7 +44,7 @@ def group_order(gid):
 def shareLink():
     form = ShareLinkForm()
     n_friends= request.args.get('n_friends')
-    sharing_link = request.args.get('sharing_link')
+    sharing_link = (request.host_url)[:-1] + request.args.get('sharing_link')
     n_friends = int(n_friends)
     for i in range(n_friends):
         if not form.is_submitted():
@@ -58,8 +58,10 @@ def shareLink():
 
         #flash(email_to_list)
 
-        email.send_email(email_from, email_to_list, sharing_link, '<h1>HTML body</h1>')
+        email.send_email(email_from, email_to_list, sharing_link, render_template('shareMailBody.html',
+                                                                                  sharing_link=sharing_link))
 
-    return render_template('shareLink.html', form=form,
-                               sharing_link=sharing_link,
-                               n_friends=n_friends)
+    return render_template('shareLink.html',
+                           sharing_link=sharing_link,
+                           form=form,
+                           n_friends=n_friends)
