@@ -1,41 +1,44 @@
 
 <body>
 <p>
-    we got an order for your order id : <b>{{ order["groupId"] }}</b>
+    we got an order for your order id : <b>{{ order[0].groupId }}</b>
 
 </p>
 <p>
     Order Status:
     <table>
+    {% for o in order %}
     <tr>
         <th>
             From:
         </th>
-        <td>{{ order["username"] }}</td>
+        <td>{{ o.username }}</td>
     </tr>
     <tr>
         <th>
             Order:
         </th>
-        <td>{{ order["orderName"] }}</td>
+        <td>{{ o.orderName }}</td>
     </tr>
     <tr>
         <th>
             Quantity:
         </th>
-        <td>{{ order["quantity"] }}</td>
+        <td>{{ o.quantity }}</td>
     </tr>
     <tr>
         <th>
             Size:
         </th>
-        <td>{% if order["size"]=="R" %}
+        <td>{% if o.size=="R" %}
                 Regular
             {% else %}
                 Large
             {% endif %}
         </td>
     </tr>
+    <hr>
+    {% endfor %}
     </table>
 </p>
 </body>

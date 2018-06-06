@@ -11,7 +11,7 @@ def index():
     form = GroupOrderForm()
     if form.validate_on_submit():
         if form.placeOrder.data:
-            group_order = Grouporder(username=form.username.data)
+            group_order = Grouporder(username=form.username.data, n_friends=form.n_friends.data)
             db.session.add(group_order)
             db.session.commit()
             sharing_link = url_for('group_order', gid=group_order.id)
@@ -30,13 +30,6 @@ def index():
 def group_order(gid):
     form = OrderForm()
     if form.validate_on_submit():
-        order_data={}
-        order_data["username"]=form.username.data
-        order_data["groupId"]=gid
-        order_data["orderName"]=form.orderName.data
-        order_data["quantity"]=form.quantity.data
-        order_data["size"]=form.size.data
-
         order = Orders(username=form.username.data,
                        groupId=gid,
                        orderName=form.orderName.data,
@@ -44,11 +37,14 @@ def group_order(gid):
                        size=form.size.data)
         db.session.add(order)
         db.session.commit()
-        order_owner=Grouporder.query.get(gid)
-        email_to_list = [order_owner.username]
-        email_from = 'poojatank999@gmail.com'
-        email.send_email(email_from, email_to_list, "Order status ", render_template('returnStatus.html',
-                                                                                     order=order_data))
+        order_details = Grouporder.query.get(gid)
+        total_friends_expected = order_details.n_friends
+        order_till_now = Orders.query.filter_by(groupId=gid)
+        if total_friends_expected == order_till_now.count():
+            email_to_list = [order_details.username]
+            email_from = 'poojatank999@gmail.com'
+            email.send_email(email_from, email_to_list, "Order status ", render_template('returnStatus.html',
+                                                                                         order=order_till_now))
         flash('Your order placed Successfully {}'.format(
             form.username.data))
 
